@@ -1,3 +1,8 @@
+@font-face {
+  font-family: digital;
+  src: url('fonts/digital-7.ttf');
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -13,15 +18,21 @@ body {
 
 .calculator {
   width: 300px;
-  background-color: antiquewhite;
+  background-color: rgb(125, 125, 125);
   border: 1px solid black;
   border-radius: 10px;
 }
 
 .calculator .display {
-  min-height: 75px;
+  height: 50px;
+  padding: 10px;
   background-color: lightblue;
   border-radius: 10px 10px 0 0;
+  font-family: digital;
+  font-size: 2rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .calculator .buttons {
@@ -29,31 +40,48 @@ body {
   flex-wrap: wrap;
 }
 
-.container .btn {
-  box-sizing: border-box;
+.buttons .btn {
   width: 25%;
   height: 60px;
+  color: white;
+  font-size: 1.3rem;
+  font-family: sans-serif;
   border-top: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
+/* Layout borders start... */
 .btn:nth-child(4n-3),
 .btn:nth-child(4n-2),
 .btn:nth-child(4n-1) {
   border-right: 1px solid black;
 }
 
-.btn.equal-btn{
+.btn.equal-btn {
   border-right: none;
 }
 
-.container .zero-btn {
+.zero-btn {
   flex-grow: 1;
   border-radius: 0 0 0 10px;
 }
 
-.container .equal-btn {
+.equal-btn {
   border-radius: 0 0 10px 0;
+}
+
+/* ...layout borders end */
+
+.btn:nth-child(1),
+.btn:nth-child(2),
+.btn:nth-child(3) {
+  background-color: rgb(79, 79, 79);
+}
+
+.btn:nth-child(4n),
+.btn.equal-btn {
+  background-color: orange;
 }
