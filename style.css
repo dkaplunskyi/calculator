@@ -18,7 +18,7 @@ body {
 }
 
 .calculator {
-  width: 300px;
+  width: 255px;
   background-color: rgb(125, 125, 125);
   border: 1px solid lightgray;
   border-radius: 10px;
