@@ -18,17 +18,44 @@ body {
 }
 
 .calculator {
-  width: 255px;
-  background-color: rgb(125, 125, 125);
+  width: 232px;
+  background-color: rgb(95, 95, 95);
   border: 1px solid lightgray;
   border-radius: 10px;
+}
+
+.calculator .header{
+  display: flex;
+  gap: 8px;
+  padding-left: 10px;
+  background-color: rgb(39, 39, 40);
+  border-radius: 10px 10px 0 0;
+}
+
+.calculator .header .circle{
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.circle:nth-child(1){
+  background-color: rgb(255, 66, 66);
+}
+
+.circle:nth-child(2){
+  background-color: rgb(255, 213, 0);
+}
+
+.circle:nth-child(3){
+  background-color: rgb(0, 220, 0);
 }
 
 .calculator .display {
   height: 50px;
   padding: 10px;
-  background-color: rgb(47, 47, 53);
-  border-radius: 10px 10px 0 0;
+  background-color: rgb(39, 39, 40);
+  /* border-radius: 10px 10px 0 0; */
   font-family: digital;
   font-size: 3rem;
   color: white;
@@ -44,7 +71,7 @@ body {
 
 .buttons .btn {
   width: 25%;
-  height: 60px;
+  height: 47px;
   color: white;
   font-size: 1.3rem;
   font-family: sans-serif;
@@ -80,7 +107,7 @@ body {
 .btn:nth-child(1),
 .btn:nth-child(2),
 .btn:nth-child(3) {
-  background-color: rgb(80, 80, 80);
+  background-color: rgb(60, 60, 60);
 }
 
 .btn:nth-child(4n),
