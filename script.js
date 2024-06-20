@@ -11,48 +11,80 @@ function division(x, y) {
   return x / y;
 }
 
-let num1 = undefined;
-let operator = '';
-let num2 = undefined;
-
 function operate(x, operator, y) {
+  let result = '';
   switch (operator) {
     case '+':
-      return addition(x, y);
+      result = addition(x, y);
+      break;
     case '-':
-      return subtraction(x, y);
+      result = subtraction(x, y);
+      break;
     case '*':
-      return multiplication(x, y);
+      result = multiplication(x, y);
+      break;
     case '/':
-      return division(x, y);
+      result = division(x, y);
+      break;
   }
+  return result;
+}
+
+const display = document.querySelector('.display');
+const clear = document.querySelector('.all-clear');
+
+clear.addEventListener('click', () => {
+  display.textContent = '';
+  num1 = '';
+  operator = '';
+  num2 = '';
+});
+
+let num1 = '';
+let operator = '';
+let num2 = '';
+
+function populateDisplay(content) {
+  display.textContent += content;
 }
 
 const digits = document.querySelectorAll('.digit');
-const display = document.querySelector('.display');
-const operators = document.querySelectorAll('.symbol');
-const equal = document.querySelector('.equal-btn');
-
-let displayValue = undefined;
-
-digits.forEach((digit) => {
+digits.forEach(digit => {
   digit.addEventListener('click', (e) => {
-    display.textContent += e.target.textContent;
-    displayValue = display.textContent;
-  });
-})
-
-operators.forEach((symbol) => {
-  symbol.addEventListener('click', (e) => {
-    num1 = parseInt(displayValue);
-    operator = e.target.textContent;
-    display.textContent = '';
+    const digitContent = e.target.textContent;
+    populateDisplay(digitContent);
+    if (operator === '') {
+      num1 += digitContent;
+    } else {
+      num2 += digitContent;
+    }
   });
 });
 
-equal.addEventListener('click', () => {
-  num2 = parseInt(displayValue);
-  let result = operate(num1, operator, num2);
-  display.textContent = result;
-  console.log(result);
-})
+const operators = document.querySelectorAll('.symbol');
+operators.forEach(symbol => {
+  symbol.addEventListener('click', (e) => {
+    if (num1 !== '' && num2 !== '') {
+      // Evaluate the current expression
+      const result = operate(parseFloat(num1), operator, parseFloat(num2));
+      display.textContent = result + ' ' + e.target.textContent + ' ';
+      num1 = result.toString();
+      num2 = '';
+      operator = e.target.textContent;
+    } else if (num1 !== '') {
+      operator = e.target.textContent;
+      populateDisplay(` ${operator} `);
+    }
+  });
+});
+
+const resultBtn = document.querySelector('.equal-btn');
+resultBtn.addEventListener('click', () => {
+  if (num1 !== '' && operator !== '' && num2 !== '') {
+    const result = operate(parseFloat(num1), operator, parseFloat(num2));
+    display.textContent = result;
+    num1 = result.toString();
+    operator = '';
+    num2 = '';
+  }
+});
